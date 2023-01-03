@@ -8,6 +8,14 @@ st.set_page_config(
     layout='wide'
 )
 
+def render_safe(value, format):
+    try:
+        x = format.format(value)
+    except:
+        x = None
+    return x
+
+
 @st.cache
 def get_scorecard_data():
     url = 'https://node-api.flipsidecrypto.com/api/v2/queries/b39ba359-ab65-4914-a205-59d26c27b449/data/latest'
@@ -53,24 +61,24 @@ with st.container():
 
         with col2:
             st.metric(label='Past 24 Hours', 
-                      value='{:,}'.format(scorecard_data['Transactions']['P24H']), 
-                      delta='{:.1%}'.format(scorecard_deltas['Transactions']['P24H']), 
+                      value=render_safe(scorecard_data['Transactions']['P24H'], '{:,}'),
+                      delta=render_safe(scorecard_deltas['Transactions']['P24H'], '{:.1%}'),
                       delta_color="normal", 
                       help=None, 
                       label_visibility="visible")
 
         with col3:
             st.metric(label='Past 7 Days', 
-                      value='{:,}'.format(scorecard_data['Transactions']['P7D']), 
-                      delta='{:.1%}'.format(scorecard_deltas['Transactions']['P7D']), 
+                      value=render_safe(scorecard_data['Transactions']['P7D'], '{:,}'),
+                      delta=render_safe(scorecard_deltas['Transactions']['P7D'], '{:.1%}'),
                       delta_color="normal", 
                       help=None, 
                       label_visibility="visible")
 
         with col4:
             st.metric(label='Past 30 Days', 
-                      value='{:,}'.format(scorecard_data['Transactions']['P30D']), 
-                      delta='{:.1%}'.format(scorecard_deltas['Transactions']['P30D']), 
+                      value=render_safe(scorecard_data['Transactions']['P30D'], '{:,}'),
+                      delta=render_safe(scorecard_deltas['Transactions']['P30D'], '{:.1%}'),
                       delta_color="normal", 
                       help=None, 
                       label_visibility="visible")
@@ -89,24 +97,24 @@ with st.container():
 
         with col2:
             st.metric(label='Past 24 Hours', 
-                      value='{:,}'.format(scorecard_data['Active Accounts']['P24H']), 
-                      delta='{:.1%}'.format(scorecard_deltas['Active Accounts']['P24H']), 
+                      value=render_safe(scorecard_data['Active Accounts']['P24H'], '{:,}'),
+                      delta=render_safe(scorecard_deltas['Active Accounts']['P24H'], '{:.1%}'),
                       delta_color="normal", 
                       help=None, 
                       label_visibility="visible")
 
         with col3:
             st.metric(label='Past 7 Days', 
-                      value='{:,}'.format(scorecard_data['Active Accounts']['P7D']), 
-                      delta='{:.1%}'.format(scorecard_deltas['Active Accounts']['P7D']), 
+                      value=render_safe(scorecard_data['Active Accounts']['P7D'], '{:,}'),
+                      delta=render_safe(scorecard_deltas['Active Accounts']['P7D'], '{:.1%}'),
                       delta_color="normal", 
                       help=None, 
                       label_visibility="visible")
 
         with col4:
             st.metric(label='Past 30 Days', 
-                      value='{:,}'.format(scorecard_data['Active Accounts']['P30D']), 
-                      delta='{:.1%}'.format(scorecard_deltas['Active Accounts']['P30D']),
+                      value=render_safe(scorecard_data['Active Accounts']['P30D'], '{:,}'),
+                      delta=render_safe(scorecard_deltas['Active Accounts']['P30D'], '{:.1%}'),
                       delta_color="normal", 
                       help=None, 
                       label_visibility="visible")
@@ -125,24 +133,24 @@ with st.container():
 
         with col2:
             st.metric(label='Past 24 Hours', 
-                      value='{:,}'.format(scorecard_data['Active Contracts']['P24H']), 
-                      delta='{:.1%}'.format(scorecard_deltas['Active Contracts']['P24H']),
+                      value=render_safe(scorecard_data['Active Contracts']['P24H'], '{:,}'),
+                      delta=render_safe(scorecard_deltas['Active Contracts']['P24H'], '{:.1%}'),
                       delta_color="normal", 
                       help=None, 
                       label_visibility="visible")
 
         with col3:
             st.metric(label='Past 7 Days', 
-                      value='{:,}'.format(scorecard_data['Active Contracts']['P7D']), 
-                      delta='{:.1%}'.format(scorecard_deltas['Active Contracts']['P7D']),
+                      value=render_safe(scorecard_data['Active Contracts']['P7D'], '{:,}'),
+                      delta=render_safe(scorecard_deltas['Active Contracts']['P7D'], '{:.1%}'),
                       delta_color="normal", 
                       help=None, 
                       label_visibility="visible")
 
         with col4:
             st.metric(label='Past 30 Days', 
-                      value='{:,}'.format(scorecard_data['Active Contracts']['P30D']), 
-                      delta='{:.1%}'.format(scorecard_deltas['Active Contracts']['P30D']),
+                      value=render_safe(scorecard_data['Active Contracts']['P30D'], '{:,}'),
+                      delta=render_safe(scorecard_deltas['Active Contracts']['P30D'], '{:.1%}'),
                       delta_color="normal", 
                       help=None, 
                       label_visibility="visible")
